@@ -23,6 +23,7 @@ val foreColor : Int = Color.parseColor("#1565C0")
 val backColor : Int = Color.parseColor("#BDBDBD")
 val arrowDeg : Float = 45f
 val arSizeFactor : Float = 5f
+val DELAY : Long = 20
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -117,7 +118,7 @@ class BiSideArrowView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(DELAY)
                     view.invalidate()
                 } catch(ex : Exception) {
                     Log.e("issue while sleeping", ex.toString())
