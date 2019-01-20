@@ -231,7 +231,7 @@ class BiSideArrowView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : BiSideArrowView {
             val view : BiSideArrowView = BiSideArrowView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
