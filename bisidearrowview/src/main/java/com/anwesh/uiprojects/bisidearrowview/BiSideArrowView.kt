@@ -58,14 +58,16 @@ fun Canvas.drawBSANode(i : Int, scale : Float, paint : Paint) {
     val sc2 : Float = scale.divideScale(1, 2)
     val sf : Float = i.iMod2F()
     paint.setStyle(Math.min(w, h) / strokeFactor)
+    val arSize : Float = size / arSizeFactor
     save()
-    translate(w/2 + (w/2 + size) * sc2.divideScale(1, 2), gap * (i + 1))
+    translate(w/2 + (w/2 + size + arSize) * sc2.divideScale(1, 2) * sf, gap * (i + 1))
     rotate(90f * sf * sc2.divideScale(0, 2))
+    drawLine(0f, -size, 0f, size, paint)
     translate(0f, -size)
     for (j in 0..(lines - 1)) {
         val sc : Float = sc1.divideScale(j, lines)
         save()
-        drawRotatingArrow(2 * size, size / arSizeFactor, j, sc, paint)
+        drawRotatingArrow(2 * size, arSize, j, sc, paint)
         restore()
     }
     restore()
