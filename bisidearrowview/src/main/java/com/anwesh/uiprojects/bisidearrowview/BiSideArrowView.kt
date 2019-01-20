@@ -203,4 +203,26 @@ class BiSideArrowView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiSideArrowView) {
+
+        private val animator : Animator = Animator(view)
+        private var bsa : BiSideArrow = BiSideArrow(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bsa.draw(canvas, paint)
+            animator.animate {
+                bsa.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
